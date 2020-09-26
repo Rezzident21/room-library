@@ -32,6 +32,11 @@ To run this project, install it locally using npm:
 
 ```
 $ git clone https://github.com/Rezzident21/room-library
-$ change path url  in config.php
+$   const USER = "root";
+    const PASS = '';
+    const HOST = "";
+    const DB = "";
+$ $_SERVER['DOCUMENT_ROOT'] = "You're absolutely path";
+    
 
 
