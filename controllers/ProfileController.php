@@ -11,6 +11,7 @@ class ProfileController extends Controller
         $this->view = new View();
     }
 
+    /* Controller for profile page */
     public function index()
     {
 
@@ -26,10 +27,10 @@ class ProfileController extends Controller
 
         $this->view->render($this->pageTpl, $this->pageData);
     }
-
+    /* Controller for get book by id */
     public function getBook()
     {
-
+        /* if user not auth redirect */
         if (!$_SESSION['user']) {
             header('Location: /');
             return;
@@ -51,7 +52,7 @@ class ProfileController extends Controller
 
 
         if (!$_SESSION['user']) {
-            header('Location: /2');
+            header('Location: /');
             return;
 
         }
@@ -85,9 +86,9 @@ class ProfileController extends Controller
             $bookPhoto = $_POST['photo'];
             $bookCategory = $_POST['category'];
 
-
-            if ($this->model->addNewBook($bookTitle,$bookAuthor,$bookYear,$bookDescription,$bookPhoto,$bookCategory)) {
-                echo json_encode(array("success" => true, "text" => "Book was  added","DATA"=>$bookCategory));
+            /* If method addNewBook in model return true */
+            if ($this->model->addNewBook($bookTitle, $bookAuthor, $bookYear, $bookDescription, $bookPhoto, $bookCategory)) {
+                echo json_encode(array("success" => true, "text" => "Book was  added", "DATA" => $bookCategory));
             } else {
                 echo json_encode(array("success" => false, "text" => "Error"));
             }
@@ -95,6 +96,6 @@ class ProfileController extends Controller
         } else {
             echo json_encode(array("success" => false, "text" => "Wrong data"));
 
+        }
     }
-}
 }
